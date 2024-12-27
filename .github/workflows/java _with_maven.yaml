@@ -11,7 +11,11 @@ jobs:
     steps: 
       - name: My first step
         run: mvn package
+<<<<<<< Updated upstream
       - uses:  actions/checkout@v4 
+=======
+       
+>>>>>>> Stashed changes
        
 
 
