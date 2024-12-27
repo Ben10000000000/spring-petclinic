@@ -11,4 +11,5 @@ jobs:
     steps: 
       - name: My first step
         run: mvn package
+        working-directory: ./Java_with_maven
       - uses:  actions/checkout@v4 
