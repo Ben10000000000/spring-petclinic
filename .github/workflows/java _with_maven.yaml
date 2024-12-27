@@ -1,22 +1,49 @@
----
+# ---
 
-name : Java with maven
-on: 
-   push
+# name : Java with maven
+# on: 
+#    push
  
-jobs: 
+# jobs: 
+#   build:
+#     name:  "maven" 
+#     runs-on: ubuntu-latest
+#     steps: 
+#     - uses: actions/setup-java@v2
+#       with:
+#          java-version: '17'
+#          distribution: 'temurin'
+#          cache: maven
+#     - uses: actions/checkout@v4
+#     - name: My first step
+#       run: mvn package
+#       working-directory: .
+
+
+name: Java with Maven
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your default branch if necessary
+
+jobs:
   build:
-    name:  "maven" 
+    name: "Maven Build"
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v4
-      - name: My first step
-        run: mvn package
-      - uses: actions/setup-java@v2
+
+    steps:
+      - uses: actions/setup-java@v4
         with:
-           java-version: '17'
-           distribution: 'temurin'
-           cache: maven
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      # Step 2: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 3: Run Maven package command
       - name: Build with Maven
-        run: mvn package
-        working-directory: .
+        run: mvn clean package
+        working-directory: .  # Adjust if your pom.xml is in a subdirectory
+
